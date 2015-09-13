@@ -1,0 +1,77 @@
+<form name="registrationForm" novalidate
+      ng-submit="form.submit(registrationForm.$valid)"
+      ng-class="{ loading:form.submitting }">
+  <header>
+    <h3 class="heading">Register for a free cat!</h4>
+  </header>
+
+  <div class="fields">
+    
+    <div class="field username-field" ng-class="{loading:registrationForm.username.$pending}">
+      <input type="text"
+             class="input"
+             name="username"
+             minlength="4"
+             maxlength="15"
+             pattern="^[-\w]+$"
+             username-available-validator
+             required
+             ng-model="form.data.username"
+             ng-model-options="{ debounce: { default : 300, blur: 0 }}"
+             placeholder="Choose a username"/>
+
+      <div ng-if="registrationForm.$submitted || registrationForm.username.$dirty" ng-messages="registrationForm.username.$error" class="errors">
+        <div ng-message="required">Username required</div>
+        <div ng-message="minlength">Username must be 4 characters or more</div>
+        <div ng-message="maxlength">Username must be less than 16 characters</div>
+        <div ng-message="pattern">Username should have no special characters</div>
+        <div ng-message="usernameAvailable">That username is taken</div>
+      </div>
+    </div>
+
+    <div class="field password-field">
+      <input type="password"
+             class="input"
+             name="password"
+             minlength="6"
+             maxlength="12"
+             ng-model="form.data.password"
+             password-characters-validator
+             placeholder="Password"
+             required />
+      <div ng-password-strength="form.data.password" 
+           strength="passStrength" 
+           inner-class="progress-bar" 
+           inner-class-prefix="progress-bar-"></div>
+      <div>Current strength is <strong>{{passStrength}}</strong>
+      <div ng-if="registrationForm.$submitted || registrationForm.password.$touched" ng-messages="registrationForm.password.$error" class="errors">
+        <div ng-message="required">Password required</div>
+        <div ng-message="minlength">Password must be longer than 6 characters</div>
+        <div ng-message="maxlength">Password imust be less than 12 characters</div>
+        <div ng-message="pattern">Your password must consist of alphanumeric characters</div>
+        <div ng-message="passwordCharacters">Password must contain a digit, upper and lowercase letters, and one or more special characters</div>
+      </div>
+    </div>
+
+    <div class="field password-field">
+      <input type="password"
+             class="input"
+             name="passwordRepeat"
+             required
+             ng-model="form.data.passwordConfirmation"
+             placeholder="Password Confirmation"
+             compare-to-validator="form.data.password" />
+      <div ng-if="registrationForm.$submitted || registrationForm.passwordRepeat.$touched || registrationForm.password.$touched"
+           ng-messages="registrationForm.passwordRepeat.$error"
+           class="errors">
+        <div ng-message="required">Confirmation password required</div>
+        <div ng-message="compareTo">Passwords must match</div>
+      </div>
+    </div>
+
+
+  <nav class="form-actions">
+    <input type="submit" value="Register" class="button primary" />
+  </nav>
+
+</form>
