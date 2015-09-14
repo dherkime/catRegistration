@@ -1,0 +1,16 @@
+angular.module('CatRegistration')
+  .controller("FormCtrl", ["$scope", "$http", "$location", ($scope, $http, $location) ->
+    this.data = {}
+
+    self = this
+    this.submit = (valid) ->
+      return if !valid
+
+      self.submitting = true
+      $http.post("/api/register", self.data).then(function() {
+        self.data = []
+        $location.path('/completed')
+      }, function(response) {
+        self.submitting = false
+      });
+  ])

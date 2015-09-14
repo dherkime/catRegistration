@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
-var RegistrationDB = mongoose.model('Registration');
+var Registration = mongoose.model('Registration');
 
 module.exports = {
 
   checkUsername : function(request, response) {
-    RegistrationDB.find({ username: request.query.username }).exec(
+    Registration.find({ username: request.query.username }).exec(
       function(err, user) {
         setTimeout(function() {
           var ok = !(user.length || err);
@@ -17,8 +17,9 @@ module.exports = {
   },
 
   create : function(request, response) {
-    signup.save(function() {
-      response.json(new Registration(request.body));
+    var registration = new Registration(request.body);
+    registration.save(function() {
+      response.json(registration);
     });
   }
 
