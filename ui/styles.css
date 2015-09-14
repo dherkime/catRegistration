@@ -338,3 +338,8 @@ button.primary, .button.primary {
 .main-footer nav {
   float:right;
 }
+
+.smallImg {
+  height: 42px;
+  width: 42px;
+}

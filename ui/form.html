@@ -2,6 +2,7 @@
       ng-submit="form.submit(registrationForm.$valid)"
       ng-class="{ loading:form.submitting }">
   <header>
+    <img src="images/cat.png" alt="This could be your cat!" class="smallImg">
     <h3 class="heading">Register for a free cat!</h4>
   </header>
 
@@ -49,7 +50,7 @@
         <div ng-message="minlength">Password must be longer than 6 characters</div>
         <div ng-message="maxlength">Password imust be less than 12 characters</div>
         <div ng-message="pattern">Your password must consist of alphanumeric characters</div>
-        <div ng-message="passwordCharacters">Password must contain a digit, upper and lowercase letters, and one or more special characters</div>
+        <div ng-message="passwordCharacters">Password must contain a digit, upper and lowercase letters, one or more special characters, and no spaces</div>
       </div>
     </div>
 
