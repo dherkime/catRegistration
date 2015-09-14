@@ -1,15 +1,18 @@
-  .directive('compareToValidator', function() {
+(function() {
+  angular.module('CatRegistration').directive('compareToValidator', function() {
     return {
-      require : 'ngModel',
-      link : function(scope, element, attrs, ngModel) {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ngModel) {
         scope.$watch(attrs.compareToValidator, function() {
-          ngModel.$validate();
+          return ngModel.$validate();
         });
-        ngModel.$validators.compareTo = function(value) {
-          var other = scope.$eval(attrs.compareToValidator);
-          return !value || !other || value == other;
-        }
+        return ngModel.$validators.compareTo = function(value) {
+          var other;
+          other = scope.$eval(attrs.compareToValidator);
+          return !value || !other || value === other;
+        };
       }
-    }
-  })
-  
+    };
+  });
+
+}).call(this);

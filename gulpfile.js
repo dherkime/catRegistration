@@ -22,4 +22,5 @@ gulp.task('js', function () {
       .pipe(gulp.dest('ui'))
 });
 
-gulp.task('default', ['compileCoffee', 'js', 'watch']);
+gulp.task('default', ['compileCoffee']);
+//gulp.task('default', ['compileCoffee', 'js', 'watch']);

@@ -1,24 +1,20 @@
-angular.module('CatRegistration')
-.directive('passwordCharactersValidator', function() {
-
-    var REQUIRED_PATTERNS = [
-      /\d+/,    //numeric values
-      /[a-z]+/, //lowercase values
-      /[A-Z]+/, //uppercase values
-      /\W+/,    //special characters
-      /^\S+$/   //no whitespace allowed
-    ];
-
+(function() {
+  angular.module('CatRegistration').directive('passwordCharactersValidator', function() {
+    var REQUIRED_PATTERNS;
+    REQUIRED_PATTERNS = [/[a-z]+/, /[A-Z]+/, /\d+/, /\W+/, /^\S+$/];
     return {
-      require : 'ngModel',
-      link : function($scope, element, attrs, ngModel) {
-        ngModel.$validators.passwordCharacters = function(value) {
-          var status = true;
+      require: 'ngModel',
+      link: function($scope, element, attrs, ngModel) {
+        return ngModel.$validators.passwordCharacters = function(value) {
+          var status;
+          status = true;
           angular.forEach(REQUIRED_PATTERNS, function(pattern) {
-            status = status && pattern.test(value);
+            return status = status && pattern.test(value);
           });
           return status;
-        }; 
+        };
       }
-    }
-  })
+    };
+  });
+
+}).call(this);

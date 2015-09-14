@@ -1,12 +1,20 @@
-angular.module('CatRegistration', ['ngMessages', 'ngAnimate', 'ngRoute', 'ngPasswordStrength'])
+(function() {
+  'use strict';
+  var config, dependencies;
 
-.config(['$routeProvider',
-   function($routeProvider) {
-    $routeProvider.when('/', {
+  dependencies = ["ngMessages", "ngAnimate", "ngRoute", "ngPasswordStrength"];
+
+  config = function($routeProvider) {
+    return $routeProvider.when('/', {
       templateUrl: './form.html',
       controller: 'FormCtrl as form'
+    }).when('/completed', {
+      templateUrl: './completed.html'
+    }).otherwise({
+      redirectTo: '/'
     });
-    $routeProvider.when('/completed', {
-      templateUrl: './completed.html',
-    });
-  }])
+  };
+
+  angular.module('CatRegistration', dependencies).config(['$routeProvider', config]);
+
+}).call(this);
