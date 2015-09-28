@@ -1,0 +1,15 @@
+Example connect string, assuming the user's been created thusly:
+
+db.createUser(
+  {
+    user: "server",
+    pwd: "somethingOrAnother",
+    roles: [ { role: "readWrite", db: "cat-registration" } ]
+  }
+);
+
+
+mongodb://server:somethingOrAnother@localhost/cat-registration
+
+My EC2 instance
+http://ec2-54-210-67-20.compute-1.amazonaws.com:8888/#/

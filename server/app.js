@@ -11,7 +11,7 @@ function startExpress(callback) {
 }
 
 function startMongo(callback) {
-  var DEFAULT_DB = 'mongodb://localhost/cat-registration';
+  var DEFAULT_DB = 'mongodb://server:somethingOrAnother@localhost/cat-registration';
   var db = process.env.MONGOHQ_URL || DEFAULT_DB;
   mongoose.connect(db, function(err) {     
     require('./Registration');
