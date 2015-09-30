@@ -13,4 +13,4 @@ A MEAN/CoffeeScript example app
 ## Fire up the app
 
 1. Run `node web.js`
-2. Open a browser to `http://localhost:8888`
+2. Open a browser to [http://localhost:8888](http://localhost:8888)
